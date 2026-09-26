@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.16)
+project(reprojection VERSION 1.0.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+add_compile_options(-Wall -Wextra -Wpedantic)
+
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
+add_library(reprojection_core src/reprojection.cpp)
+
+add_executable(reprojection_app src/main.cpp)
+target_link_libraries(reprojection_app PRIVATE reprojection_core)
